@@ -42,10 +42,10 @@ function getColumnFormats($queryID) {
 		"PILOT" => array("","","",""),
 		"SHIP" => array("","","",""),
 		"PILOTS" => array("",""),
-		"FIGHTSIN" => array("",""),
+		"FIGHTSIN" => array("","",""),
 		"SPACESTATION" => array("",""),
-		"WARS" => array("",""),
-		"BATTLE" => array("",""),
+		"WARS" => array("","", "", ""),
+		"BATTLE" => array("","",""),
 		"Q1" => array("", "", "")
 	);
 	return $headerMap[strtoupper($queryID)];
