@@ -55,7 +55,6 @@ function getHeader() {
 				<button class='navBarButton' name='NavButton' value='SPACESTATION' type='submit'>Space Station</button>
 				<button class='navBarButton' name='NavButton' value='WARS' type='submit'>Wars</button>
 				<button class='navBarButton' name='NavButton' value='BATTLE' type='submit'>Battle</button>
-				
 			</form>
 		</div>
 	";

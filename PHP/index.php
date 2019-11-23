@@ -1,8 +1,8 @@
 <?php
-	include 'TableModel.php';
+	
 	include 'standardPage.php';
-	include 'QueryMap.php';
-
+	include 'htmlTableGenerator.php';
+	
 	loadStandardPage('standardHeaderFactory', 'contentFactory');
 
 	function contentFactory() {
@@ -19,9 +19,6 @@
 		if (isset($_POST['NavButton'])) {
 			$queryID = $_POST['NavButton'];
 			genTableFromQuery($queryID, null);
-			//$tableName = str_replace(' ', '', $_POST['NavButton']);
-			//$columnFormats = getColumnFormats($tableName);
-			//getTable($queryString, $tableName, $columnFormats);
 		}
 
 		// Get the name of the link and the related query, then generate the table
@@ -29,9 +26,6 @@
 			$queryID = $_POST['queryID'];
 			$tableHeader = $_POST['header'];
 			genTableFromQuery($queryID, $tableHeader);
-			//$queryString = getQuery($_POST['queryID'], $tableHeader);
-			//$columnFormats = getColumnFormats($_POST['queryID']);
-			//getTable($queryString, "$tableHeader", $columnFormats);
 		}
 
 		// Handle search

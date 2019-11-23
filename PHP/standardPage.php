@@ -6,8 +6,8 @@ function loadStandardPage($headerFactory, $contentFactory) {
 		<!DOCTYPE html>
 
 		<html>
-		<head>	
-			<link rel='stylesheet' type='text/css' href='stylesheet.css'>
+		<head>
+			<link rel='stylesheet' type='text/css' href='../stylesheet.css'>
 		</head>
 		<body>
 			<!-- Header/Search/Navbar-->
