@@ -6,15 +6,6 @@
 	loadStandardPage('standardHeaderFactory', 'contentFactory');
 
 	function contentFactory() {
-		// Generate a session ID if one doesn't exist
-		if(!session_id()) session_start();
-
-		// If the logged in attribute doesn't exist yet, create it and set it to false
-		if(!isset($_SESSION['loggedIn'])) {
-		    $_SESSION['loggedIn'] = false;
-		}
-		$tableName = null;
-
 		// Check if one of the navbar buttons was pressed or the search field was used, get the accompanying table name
 		if (isset($_POST['NavButton'])) {
 			$queryID = $_POST['NavButton'];

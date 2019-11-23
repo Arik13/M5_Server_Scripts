@@ -3,6 +3,23 @@
 include 'connect.php';
 include 'TableModel.php';
 
+function getTableHeaders($tableName) {
+	$connection = openConnection();
+	$query = "SELECT COLUMN_NAME
+	FROM INFORMATION_SCHEMA.COLUMNS
+	WHERE TABLE_NAME = N'$tableName'";
+	$queryResult = $connection->query($query);
+	if (!validate($queryResult)) return;
+	$tableData = $queryResult->fetch_all(MYSQLI_ASSOC);
+	$tableHeaders = array();
+	foreach($tableData as $something) {
+		foreach($something as $somethingElse) {
+			array_push($tableHeaders, camelCaseToUpperCaseSpaces($somethingElse));
+		}	
+	}
+	return $tableHeaders;
+}
+
 // Queries the database for all rows and columns of the given table name
 function genTableFromQuery($queryID, $tableHeader) {
 	// Connect to the server
