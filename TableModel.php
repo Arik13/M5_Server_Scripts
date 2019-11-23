@@ -7,12 +7,14 @@ class TableModel {
 	var $tableName;
 	var $tableHeaders;
 	var $tableData;
-	var $columnFormats;
-    public function __construct($tableName, $tableHeaders, $tableData, $columnFormats) {
+	var $columnStyles;
+	var $relatedQueries;
+    public function __construct($tableName, $tableHeaders, $tableData, $columnStyles, $relatedQueries) {
     	$this->tableName = $tableName;
         $this->tableHeaders = $tableHeaders;
         $this->tableData = $tableData;
-        $this->columnFormats = $columnFormats;
+		$this->columnStyles = $columnStyles;
+		$this->relatedQueries = $relatedQueries;
     }
     public function getTableName() {
 		return $this->tableName;
@@ -23,8 +25,11 @@ class TableModel {
 	public function getTableData() {
 		return $this->tableData;
 	}
-	public function getColumnFormats() {
-		return $this->columnFormats;
+	public function getColumnStyles() {
+		return $this->columnStyles;
+	}
+	public function getRelatedQueries() {
+		return $this->relatedQueries;
 	}
 }
 
@@ -82,8 +87,8 @@ function genTableFromQuery($queryID, $tableHeader) {
 	}
 	// Query the DB for the column schema formats
 	$query2 = 
-		"SELECT columnID, style
-		FROM ColumnStyling
+		"SELECT style, relatedQuery
+		FROM ColumnMetaData
 		WHERE queryID = '$queryID'";
 	$queryResult = $connection->query($query2);
 	if (!$queryResult) {
@@ -92,8 +97,10 @@ function genTableFromQuery($queryID, $tableHeader) {
 	}
 	$query2Data = $queryResult->fetch_all(MYSQLI_ASSOC);
 	$columnStyles = array();
+	$relatedQueries = array();
 	for ($i = 0; $i < count($query2Data); $i++) {
 		array_push($columnStyles, $query2Data[$i]["style"]);
+		array_push($relatedQueries, $query2Data[$i]["relatedQuery"]);
 	}
 
 	// Do the main query
@@ -112,7 +119,7 @@ function genTableFromQuery($queryID, $tableHeader) {
 	    $tableHeaders = array_keys($tableData[0]);
 	}
 	// Instantiate a table model with the name parameter and queried headers and data
-	$tableModel = new TableModel($tableHeader, $tableHeaders, $tableData, $columnStyles);
+	$tableModel = new TableModel($tableHeader, $tableHeaders, $tableData, $columnStyles, $relatedQueries);
 
 
 

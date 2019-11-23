@@ -134,48 +134,48 @@ INSERT INTO QueryObject VALUES
 	'LOCATION');
 	
 
-INSERT INTO ColumnStyling VALUES
-	('SECURITYSTATUS', 0, ''),
-	('SECURITYSTATUS', 1, ''),
+INSERT INTO ColumnMetaData VALUES
+	('SECURITYSTATUS', 0, '', NULL),
+	('SECURITYSTATUS', 1, '', NULL),
 
-	('SHIPATTRIBUTES', 0, ''),
-	('SHIPATTRIBUTES', 1, ''),
+	('SHIPATTRIBUTES', 0, '', NULL),
+	('SHIPATTRIBUTES', 1, '', NULL),
 
-	('LOCATION', 0, ''),
-	('LOCATION', 1, ''),
+	('LOCATION', 0, '', NULL),
+	('LOCATION', 1, '', NULL),
 
-	('CORPORATION', 0, 'link'),
-	('CORPORATION', 1, ''),
+	('CORPORATION', 0, 'link', 'Q1'),
+	('CORPORATION', 1, '', NULL),
 
-	('PILOT', 0, ''),
-	('PILOT', 1, ''),
-	('PILOT', 2, ''),
-	('PILOT', 3, ''),
+	('PILOT', 0, '', NULL),
+	('PILOT', 1, '', NULL),
+	('PILOT', 2, '', NULL),
+	('PILOT', 3, '', NULL),
 
-	('SHIP', 0, ''),
-	('SHIP', 1, ''),
-	('SHIP', 2, ''),
-	('SHIP', 3, ''),
+	('SHIP', 0, '', NULL),
+	('SHIP', 1, '', NULL),
+	('SHIP', 2, '', NULL),
+	('SHIP', 3, '', NULL),
 
-	('PILOTS', 0, ''),
-	('PILOTS', 1, ''),
+	('PILOTS', 0, '', NULL),
+	('PILOTS', 1, '', NULL),
 
-	('FIGHTSIN', 0, ''),
-	('FIGHTSIN', 1, ''),
-	('FIGHTSIN', 2, ''),
+	('FIGHTSIN', 0, '', NULL),
+	('FIGHTSIN', 1, '', NULL),
+	('FIGHTSIN', 2, '', NULL),
 
-	('SPACESTATION', 0, ''),
-	('SPACESTATION', 1, ''),
+	('SPACESTATION', 0, '', NULL),
+	('SPACESTATION', 1, '', NULL),
 
-	('WARS', 0, ''),
-	('WARS', 1, ''),
-	('WARS', 2, ''),
-	('WARS', 3, ''),
+	('WARS', 0, '', NULL),
+	('WARS', 1, '', NULL),
+	('WARS', 2, '', NULL),
+	('WARS', 3, '', NULL),
 
-	('BATTLE', 0, ''),
-	('BATTLE', 1, ''),
-	('BATTLE', 2, ''),
+	('BATTLE', 0, '', NULL),
+	('BATTLE', 1, '', NULL),
+	('BATTLE', 2, '', NULL),
 
-	('Q1', 0, ''),
-	('Q1', 1, ''),
-	('Q1', 2, '');
+	('Q1', 0, '', NULL),
+	('Q1', 1, '', NULL),
+	('Q1', 2, '', NULL);

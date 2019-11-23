@@ -4,7 +4,8 @@ function generateTable($tableModel) {
 	$tableName = $tableModel->getTableName();
 	$tableHeaders = $tableModel->getTableHeaders();
 	$tableData = $tableModel->getTableData();
-	$columnFormats = $tableModel->getColumnFormats();
+	$columnStyles = $tableModel->getColumnStyles();
+	$relatedQueries = $tableModel->getRelatedQueries();
 	
 	// Format the table name and return it as an html header
 	$formattedTableName = camelCaseToUpperCaseSpaces($tableName);
@@ -25,8 +26,8 @@ function generateTable($tableModel) {
 		echo "<tr>";
 		for ($j = 0; $j < count($tableHeaders); $j++) {
 			$dataElement = $tableData[$i][$tableHeaders[$j]];
-			$formattedDataElement = formatData($dataElement, $columnFormats[$j]);
-			echo $formattedDataElement;
+			$styledDataElement = styleData($dataElement, $columnStyles[$j], $relatedQueries[$j]);
+			echo $styledDataElement;
 		}
 		echo "</tr>";
 	}
@@ -50,12 +51,12 @@ function camelCaseToUpperCaseSpaces($str) {
 	}
 	return $formattedString;
 }
-function formatData($dataElement, $columnFormats) {
+function styleData($dataElement, $columnFormats, $relatedQuery) {
 	if ($columnFormats == 'link') {
 		return "
 		<td>
 		<form method='post' action='index.php'>
-			<input type='hidden' name='queryID' value='Q1'>
+			<input type='hidden' name='queryID' value='$relatedQuery'>
 			<input class='tableLink' type='submit' name='header' value='$dataElement'>
 		</form>
 		</td>

@@ -90,10 +90,12 @@ CREATE TABLE QueryObject(
 	tableHeader varChar(32)
 );
 
-CREATE TABLE ColumnStyling(
+CREATE TABLE ColumnMetaData(
 	queryID varchar(32),
 	columnID INTEGER,
 	style varchar(32),
+	relatedQuery varchar(32) DEFAULT NULL,
 	PRIMARY KEY(queryID, columnID),
-	FOREIGN KEY(queryID) REFERENCES QueryObject(queryID)
+	FOREIGN KEY(queryID) REFERENCES QueryObject(queryID),
+	FOREIGN KEY(relatedQuery) REFERENCES QueryObject(queryID)
 );
