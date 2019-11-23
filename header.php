@@ -44,6 +44,7 @@ function getHeader() {
 		<!-- Navbar -->
 		<div class='navBar'> 
 			<form method='post' action='index.php'>
+				<button class='navBarButton' name='NavButton' value='ShipAttributes' type='submit'>Security Status</button>
 				<input class='navBarButton' type='submit' name='NavButton' value='Security Status'>
 				<input class='navBarButton' type='submit' name='NavButton' value='Ship Attributes'>
 				<input class='navBarButton' type='submit' name='NavButton' value='Location'>

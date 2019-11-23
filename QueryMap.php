@@ -1,5 +1,31 @@
 <?php
 
+// queryHandle, queryBody, columnFormats, tableHeader
+class QueryModel {
+	var $queryHandle;
+	var $queryBody;
+	var $tableName;
+	var $columnFormats;
+    public function __construct($queryHandle, $columnFormats) {
+    	$this->tableName = $tableName;
+        $this->tableHeaders = $tableHeaders;
+        $this->tableData = $tableData;
+        $this->columnFormats = $columnFormats;
+    }
+    public function getTableName() {
+		return $this->tableName;
+	}
+	public function getTableHeaders() {
+		return $this->tableHeaders;
+	}
+	public function getTableData() {
+		return $this->tableData;
+	}
+	public function getColumnFormats() {
+		return $this->columnFormats;
+	}
+}
+
 function getQuery($queryID, $conditionString) {
 	$queryMap = array(
 		"SECURITYSTATUS" => "SELECT * FROM SECURITYSTATUS",
@@ -13,8 +39,8 @@ function getQuery($queryID, $conditionString) {
 		"SPACESTATION" => "SELECT * FROM SPACESTATION",
 		"WARS" => "SELECT * FROM WARS",
 		"BATTLE" => "SELECT * FROM BATTLE",
-		"Q1" => "
-			SELECT 	homeBaseName as 'Home Base', 
+		"Q1" => 
+			"SELECT	homeBaseName as 'Home Base', 
 					count(DISTINCT pilotName) AS 'Number of Pilots', 
 					count(DISTINCT shipName) AS 'Number of Ships'
             FROM 
@@ -33,22 +59,38 @@ function getQuery($queryID, $conditionString) {
 	);
 	return $queryMap[strtoupper($queryID)];
 }
+
 function getColumnFormats($queryID) {
-	$headerMap = array(
-		"SECURITYSTATUS" => array("",""),
-		"SHIPATTRIBUTES" => array("",""),
-		"LOCATION" => array("",""),
-		"CORPORATION" => array("link",""),
-		"PILOT" => array("","","",""),
-		"SHIP" => array("","","",""),
-		"PILOTS" => array("",""),
-		"FIGHTSIN" => array("","",""),
-		"SPACESTATION" => array("",""),
-		"WARS" => array("","", "", ""),
-		"BATTLE" => array("","",""),
-		"Q1" => array("", "", "")
+	$headerMap = array(							// # of columns in schema
+		"SECURITYSTATUS" => array("",""),		// 2
+		"SHIPATTRIBUTES" => array("",""),		// 2
+		"LOCATION" => array("",""),				// 2
+		"CORPORATION" => array("link",""),		// 2
+		"PILOT" => array("","","",""),			// 4
+		"SHIP" => array("","","",""),			// 4
+		"PILOTS" => array("",""),				// 2
+		"FIGHTSIN" => array("","",""),			// 3
+		"SPACESTATION" => array("",""),			// 2
+		"WARS" => array("","","",""),			// 4
+		"BATTLE" => array("","",""),			// 3
+		"Q1" => array("","",""),				// 3
 	);
 	return $headerMap[strtoupper($queryID)];
-}
+}/*
+function getTables() {
+	$tables = array(
+		0 => array("SECURITYSTATUS", "Security Status"),
+		1 => array("SHIPATTRIBUTES", 
+		2 => array("LOCATION",
+		3 => array("CORPORATION",
+		4 => array("PILOT",
+		5 => array("SHIP",
+		6 => array("PILOTS",
+		7 => array("FIGHTSIN",
+		8 => array("SPACESTATION",
+		9 => array("WARS",
+		10 => array("BATTLE",
+	);
+}*/
 
 ?>
