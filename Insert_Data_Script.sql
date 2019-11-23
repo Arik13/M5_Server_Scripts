@@ -102,3 +102,80 @@ INSERT INTO Pilots VALUES
 	('Cassandra', 'Sabre'),
 	('Bob', 'Venture'),
 	('Dan', 'Sabre');
+
+INSERT INTO QueryObject VALUES
+	('SECURITYSTATUS', 'SELECT * FROM SECURITYSTATUS', 'Security Status'),
+	('SHIPATTRIBUTES', 'SELECT * FROM SHIPATTRIBUTES', 'Ship Attributes'),
+	('LOCATION', 'SELECT * FROM LOCATION', 'Location'),
+	('CORPORATION', 'SELECT * FROM CORPORATION', 'Corporation'),
+	('PILOT', 'SELECT * FROM PILOT', 'Pilot'),
+	('SHIP', 'SELECT * FROM SHIP', 'Ship'),
+	('PILOTS', 'SELECT * FROM PILOTS', 'Pilots'),
+	('FIGHTSIN', 'SELECT * FROM FIGHTSIN', 'Fights In'),
+	('SPACESTATION', 'SELECT * FROM SPACESTATION', 'Space Station'),
+	('WARS', 'SELECT * FROM WARS', 'Wars'),
+	('BATTLE', 'SELECT * FROM BATTLE', 'Battle'),
+	('Q1', 
+	"SELECT	homeBaseName as 'Home Base', 
+					count(DISTINCT pilotName) AS 'Number of Pilots', 
+					count(DISTINCT shipName) AS 'Number of Ships'
+            FROM 
+				(SELECT pilot.name AS pilotName,
+						pilot.corporationName AS corporationName,
+						ship.shipName AS shipName,
+						ship.shipClass AS shipClass,
+						corporation.homeBaseName as homeBaseName
+				FROM pilots
+				INNER JOIN pilot ON pilots.pilotName = pilot.name
+				INNER JOIN ship ON pilots.shipName = ship.shipName
+				INNER JOIN corporation ON corporation.name = pilot.corporationName
+                WHERE pilot.corporationName = '$conditionString') AS t
+            GROUP BY homeBaseName;", 
+	'LOCATION');
+	
+
+INSERT INTO ColumnStyling VALUES
+	('SECURITYSTATUS', 0, ''),
+	('SECURITYSTATUS', 1, ''),
+
+	('SHIPATTRIBUTES', 0, ''),
+	('SHIPATTRIBUTES', 1, ''),
+
+	('LOCATION', 0, ''),
+	('LOCATION', 1, ''),
+
+	('CORPORATION', 0, 'link'),
+	('CORPORATION', 1, ''),
+
+	('PILOT', 0, ''),
+	('PILOT', 1, ''),
+	('PILOT', 2, ''),
+	('PILOT', 3, ''),
+
+	('SHIP', 0, ''),
+	('SHIP', 1, ''),
+	('SHIP', 2, ''),
+	('SHIP', 3, ''),
+
+	('PILOTS', 0, ''),
+	('PILOTS', 1, ''),
+
+	('FIGHTSIN', 0, ''),
+	('FIGHTSIN', 1, ''),
+	('FIGHTSIN', 2, ''),
+
+	('SPACESTATION', 0, ''),
+	('SPACESTATION', 1, ''),
+
+	('WARS', 0, ''),
+	('WARS', 1, ''),
+	('WARS', 2, ''),
+	('WARS', 3, ''),
+
+	('BATTLE', 0, ''),
+	('BATTLE', 1, ''),
+	('BATTLE', 2, ''),
+
+	('Q1', 0, ''),
+	('Q1', 1, ''),
+	('Q1', 2, '');

@@ -1,5 +1,5 @@
 body {
-	background-color: yellow;
+	background-color: gray;
 }
 .headerBar {
 	position: relative;
@@ -68,7 +68,7 @@ h1.tableTitle {
 	text-align: center;
 }
 
-input[type="submit"].navBarButton {
+button[type="submit"].navBarButton {
   	background-color: #3F3F3F;
 	border: none;
 	color: white;
@@ -81,11 +81,11 @@ input[type="submit"].navBarButton {
 	outline: 0 none;
 }
 
-input[type="submit"]:hover.navBarButton {
+button[type="submit"]:hover.navBarButton {
   background-color: gray;
 }
 
-input.odd:focus.navBarButton,input.even:focus.navBarButton {
+button.odd:focus.navBarButton,input.even:focus.navBarButton {
     color: black;
 }
 

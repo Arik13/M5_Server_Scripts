@@ -1,31 +1,5 @@
 <?php
-
-// queryHandle, queryBody, columnFormats, tableHeader
-class QueryModel {
-	var $queryHandle;
-	var $queryBody;
-	var $tableName;
-	var $columnFormats;
-    public function __construct($queryHandle, $columnFormats) {
-    	$this->tableName = $tableName;
-        $this->tableHeaders = $tableHeaders;
-        $this->tableData = $tableData;
-        $this->columnFormats = $columnFormats;
-    }
-    public function getTableName() {
-		return $this->tableName;
-	}
-	public function getTableHeaders() {
-		return $this->tableHeaders;
-	}
-	public function getTableData() {
-		return $this->tableData;
-	}
-	public function getColumnFormats() {
-		return $this->columnFormats;
-	}
-}
-
+/*
 function getQuery($queryID, $conditionString) {
 	$queryMap = array(
 		"SECURITYSTATUS" => "SELECT * FROM SECURITYSTATUS",
@@ -76,21 +50,25 @@ function getColumnFormats($queryID) {
 		"Q1" => array("","",""),				// 3
 	);
 	return $headerMap[strtoupper($queryID)];
-}/*
-function getTables() {
-	$tables = array(
-		0 => array("SECURITYSTATUS", "Security Status"),
-		1 => array("SHIPATTRIBUTES", 
-		2 => array("LOCATION",
-		3 => array("CORPORATION",
-		4 => array("PILOT",
-		5 => array("SHIP",
-		6 => array("PILOTS",
-		7 => array("FIGHTSIN",
-		8 => array("SPACESTATION",
-		9 => array("WARS",
-		10 => array("BATTLE",
+}
+
+function getQueryMetaData($queryID) {
+	$queryMetaData = array(							
+		"SECURITYSTATUS" => array("Security Status", array("",""), getQuery($queryID)),
+		"SHIPATTRIBUTES" => array("Security Status", array("",""), getQuery($queryID)),
+		"LOCATION" => 		array("Security Status", array("",""), getQuery($queryID)),
+		"CORPORATION" => 	array("Security Status", array("",""), getQuery($queryID)),
+		"PILOT" => 			array("Security Status", array("",""), getQuery($queryID)),
+		"SHIP" => 			array("Security Status", array("",""), getQuery($queryID)),
+		"PILOTS" => 		array("Security Status", array("",""), getQuery($queryID)),
+		"FIGHTSIN" => 		array("Security Status", array("",""), getQuery($queryID)),
+		"SPACESTATION" => 	array("Security Status", array("",""), getQuery($queryID)),
+		"WARS" => 			array("Security Status", array("",""), getQuery($queryID)),
+		"BATTLE" => 		array("Security Status", array("",""), getQuery($queryID)),
+		"Q1" => 			array("Security Status", array("",""), getQuery($queryID)),
 	);
-}*/
+	return $headerMap[strtoupper($queryID)];
+}
+*/
 
 ?>

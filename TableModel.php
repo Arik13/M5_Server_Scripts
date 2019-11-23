@@ -55,3 +55,70 @@ function getTable($dataQueryString, $tableName, $columnFormats) {
 	// close the connection to the server
 	$connection->close();
 }
+
+// Queries the database for all rows and columns of the given table name
+function genTableFromQuery($queryID, $tableHeader) {
+	// Connect to the server and query it for the given table
+	$connection = openConnection();
+
+	// Query the DB for the Table Name and the SQL to call it
+	$query1 = 
+		"SELECT queryBody, tableHeader 
+		FROM queryobject 
+		WHERE queryID = '$queryID'";
+	$queryResult = $connection->query($query1);
+	if (!$queryResult) {
+		echo "<p>No result found!</p>";
+		return;
+	}
+	$query1Data = $queryResult->fetch_all(MYSQLI_ASSOC);
+	$queryBody = $query1Data[0]["queryBody"];
+
+	if (!$tableHeader) {
+		$tableHeader = $query1Data[0]["tableHeader"];
+	} 
+	else {
+		$queryBody = str_replace("conditionString",$tableHeader,$queryBody);
+	}
+	// Query the DB for the column schema formats
+	$query2 = 
+		"SELECT columnID, style
+		FROM ColumnStyling
+		WHERE queryID = '$queryID'";
+	$queryResult = $connection->query($query2);
+	if (!$queryResult) {
+		echo "<p>No result found!</p>";
+		return;
+	}
+	$query2Data = $queryResult->fetch_all(MYSQLI_ASSOC);
+	$columnStyles = array();
+	for ($i = 0; $i < count($query2Data); $i++) {
+		array_push($columnStyles, $query2Data[$i]["style"]);
+	}
+
+	// Do the main query
+	$dataQueryResult = $connection->query($queryBody);
+
+	// If the query was invalid, prompt and return
+	if (!$dataQueryResult) {
+		echo "<p>No result found!</p>";
+		return;
+	}
+
+	// Extract the table headers and data into arrays, from the queries
+	$tableData = $dataQueryResult->fetch_all(MYSQLI_ASSOC);
+	$tableHeaders = array();
+	if(!empty($tableData)){
+	    $tableHeaders = array_keys($tableData[0]);
+	}
+	// Instantiate a table model with the name parameter and queried headers and data
+	$tableModel = new TableModel($tableHeader, $tableHeaders, $tableData, $columnStyles);
+
+
+
+	// Use the table model to make an html table
+	generateTable($tableModel);
+
+	// close the connection to the server
+	$connection->close();
+}

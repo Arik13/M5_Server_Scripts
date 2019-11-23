@@ -17,18 +17,21 @@
 
 		// Check if one of the navbar buttons was pressed or the search field was used, get the accompanying table name
 		if (isset($_POST['NavButton'])) {
-			$tableName = str_replace(' ', '', $_POST['NavButton']);
-			$columnFormats = getColumnFormats($tableName);
-			$queryString = getQuery($tableName, null);
-			getTable($queryString, $tableName, $columnFormats);
+			$queryID = $_POST['NavButton'];
+			genTableFromQuery($queryID, null);
+			//$tableName = str_replace(' ', '', $_POST['NavButton']);
+			//$columnFormats = getColumnFormats($tableName);
+			//getTable($queryString, $tableName, $columnFormats);
 		}
 
 		// Get the name of the link and the related query, then generate the table
-		else if (isset($_POST['link'])) {
-			$dataName = $_POST['data'];
-			$queryString = getQuery($_POST['link'], $dataName);
-			$columnFormats = getColumnFormats($_POST['link']);
-			getTable($queryString, "$dataName", $columnFormats);
+		else if (isset($_POST['queryID'])) {
+			$queryID = $_POST['queryID'];
+			$tableHeader = $_POST['header'];
+			genTableFromQuery($queryID, $tableHeader);
+			//$queryString = getQuery($_POST['queryID'], $tableHeader);
+			//$columnFormats = getColumnFormats($_POST['queryID']);
+			//getTable($queryString, "$tableHeader", $columnFormats);
 		}
 
 		// Handle search
@@ -41,4 +44,5 @@
 			echo '<p> Welcome to the EVE online database!</p>';
 		}
 	}
+ 
 ?>

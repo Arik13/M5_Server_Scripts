@@ -55,8 +55,8 @@ function formatData($dataElement, $columnFormats) {
 		return "
 		<td>
 		<form method='post' action='index.php'>
-			<input type='hidden' name='link' value='Q1'>
-			<input class='tableLink' type='submit' name='data' value='$dataElement'>
+			<input type='hidden' name='queryID' value='Q1'>
+			<input class='tableLink' type='submit' name='header' value='$dataElement'>
 		</form>
 		</td>
 		";

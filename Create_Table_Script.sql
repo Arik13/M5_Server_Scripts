@@ -83,3 +83,17 @@ CREATE TABLE Wars(
 	FOREIGN KEY(aggressorName) REFERENCES Corporation(name),
 	FOREIGN KEY(defenderName) REFERENCES Corporation(name)
 );
+
+CREATE TABLE QueryObject(
+	queryID varchar(32) PRIMARY KEY,
+	queryBody varchar(1028),
+	tableHeader varChar(32)
+);
+
+CREATE TABLE ColumnStyling(
+	queryID varchar(32),
+	columnID INTEGER,
+	style varchar(32),
+	PRIMARY KEY(queryID, columnID),
+	FOREIGN KEY(queryID) REFERENCES QueryObject(queryID)
+);

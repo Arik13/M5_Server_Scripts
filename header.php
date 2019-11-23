@@ -44,18 +44,18 @@ function getHeader() {
 		<!-- Navbar -->
 		<div class='navBar'> 
 			<form method='post' action='index.php'>
-				<button class='navBarButton' name='NavButton' value='ShipAttributes' type='submit'>Security Status</button>
-				<input class='navBarButton' type='submit' name='NavButton' value='Security Status'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Ship Attributes'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Location'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Corporation'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Pilot'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Ship'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Pilots'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Fights In'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Space Station'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Wars'>
-				<input class='navBarButton' type='submit' name='NavButton' value='Battle'>
+				<button class='navBarButton' name='NavButton' value='SECURITYSTATUS' type='submit'>Security Status</button>
+				<button class='navBarButton' name='NavButton' value='SHIPATTRIBUTES' type='submit'>Ship Attributes</button>
+				<button class='navBarButton' name='NavButton' value='LOCATION' type='submit'>Location</button>
+				<button class='navBarButton' name='NavButton' value='CORPORATION' type='submit'>Corporation</button>
+				<button class='navBarButton' name='NavButton' value='PILOT' type='submit'>Pilot</button>
+				<button class='navBarButton' name='NavButton' value='SHIP' type='submit'>Ship</button>
+				<button class='navBarButton' name='NavButton' value='PILOTS' type='submit'>Pilots</button>
+				<button class='navBarButton' name='NavButton' value='FIGHTSIN' type='submit'>Fights In</button>
+				<button class='navBarButton' name='NavButton' value='SPACESTATION' type='submit'>Space Station</button>
+				<button class='navBarButton' name='NavButton' value='WARS' type='submit'>Wars</button>
+				<button class='navBarButton' name='NavButton' value='BATTLE' type='submit'>Battle</button>
+				
 			</form>
 		</div>
 	";
