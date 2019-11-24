@@ -5,9 +5,10 @@ include 'TableModel.php';
 
 function getTableHeaders($tableName) {
 	$connection = openConnection();
-	$query = "SELECT COLUMN_NAME
-	FROM INFORMATION_SCHEMA.COLUMNS
-	WHERE TABLE_NAME = N'$tableName'";
+	$query = 
+		"SELECT COLUMN_NAME
+		FROM INFORMATION_SCHEMA.COLUMNS
+		WHERE TABLE_NAME = N'$tableName'";
 	$queryResult = $connection->query($query);
 	if (!validate($queryResult)) return;
 	$tableData = $queryResult->fetch_all(MYSQLI_ASSOC);
@@ -17,6 +18,7 @@ function getTableHeaders($tableName) {
 			array_push($tableHeaders, camelCaseToUpperCaseSpaces($somethingElse));
 		}	
 	}
+	$connection->close();
 	return $tableHeaders;
 }
 
