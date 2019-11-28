@@ -11,10 +11,6 @@ function loadStandardPage($headerFactory, $contentFactory) {
 		<!DOCTYPE html>
 
 		<html>
-		<head>
-			<link rel='stylesheet' type='text/css' href='../CSS/stylesheet.css'>
-			<script src='../js/handlers.js'></script>
-		</head>
 		<body>
 			<!-- Header/Search/Navbar-->
 			<div>";
@@ -26,6 +22,10 @@ function loadStandardPage($headerFactory, $contentFactory) {
 				$contentFactory();
 	echo "	</div>
 		</body>
+		<head>
+			<link rel='stylesheet' type='text/css' href='../CSS/stylesheet.css'>
+			<script src='../js/handlers.js'></script>
+		</head>
 		</html>";
 }
 

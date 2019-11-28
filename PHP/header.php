@@ -44,17 +44,17 @@ function getHeader() {
 		<!-- Navbar -->
 		<div class='navBar'> 
 			<form method='post' action='index.php'>
-				<button class='navBarButton' name='NavButton' value='SECURITYSTATUS' type='submit'>Security Status</button>
-				<button class='navBarButton' name='NavButton' value='SHIPATTRIBUTES' type='submit'>Ship Attributes</button>
-				<button class='navBarButton' name='NavButton' value='LOCATION' type='submit'>Location</button>
-				<button class='navBarButton' name='NavButton' value='CORPORATION' type='submit'>Corporation</button>
 				<button class='navBarButton' name='NavButton' value='PILOT' type='submit'>Pilot</button>
-				<button class='navBarButton' name='NavButton' value='SHIP' type='submit'>Ship</button>
 				<button class='navBarButton' name='NavButton' value='PILOTS' type='submit'>Pilots</button>
-				<button class='navBarButton' name='NavButton' value='FIGHTSIN' type='submit'>Fights In</button>
-				<button class='navBarButton' name='NavButton' value='SPACESTATION' type='submit'>Space Station</button>
+				<button class='navBarButton' name='NavButton' value='SHIP' type='submit'>Ship</button>
+				<button class='navBarButton' name='NavButton' value='CORPORATION' type='submit'>Corporation</button>
 				<button class='navBarButton' name='NavButton' value='WARS' type='submit'>Wars</button>
 				<button class='navBarButton' name='NavButton' value='BATTLE' type='submit'>Battle</button>
+				<button class='navBarButton' name='NavButton' value='FIGHTSIN' type='submit'>Fights In</button>
+				<button class='navBarButton' name='NavButton' value='LOCATION' type='submit'>Location</button>
+				<button class='navBarButton' name='NavButton' value='SPACESTATION' type='submit'>Space Station</button>
+				<button class='navBarButton' name='NavButton' value='SECURITYSTATUS' type='submit'>Security Status</button>
+				<button class='navBarButton' name='NavButton' value='SHIPATTRIBUTES' type='submit'>Ship Attributes</button>
 			</form>
 		</div>
 	";

@@ -8,18 +8,34 @@ function getTableHeaders($tableName) {
 	$query = 
 		"SELECT COLUMN_NAME
 		FROM INFORMATION_SCHEMA.COLUMNS
-		WHERE TABLE_NAME = N'$tableName'";
+		WHERE TABLE_NAME = '$tableName'";
 	$queryResult = $connection->query($query);
 	if (!validate($queryResult)) return;
 	$tableData = $queryResult->fetch_all(MYSQLI_ASSOC);
 	$tableHeaders = array();
 	foreach($tableData as $something) {
-		foreach($something as $somethingElse) {
-			array_push($tableHeaders, camelCaseToUpperCaseSpaces($somethingElse));
+		foreach($something as $header) {
+			array_push($tableHeaders, camelCaseToUpperCaseSpaces($header));
 		}	
 	}
 	$connection->close();
 	return $tableHeaders;
+}
+
+function qetHeadersAndDataFromDB($queryString) {
+	$connection = openConnection();
+	$queryResult = $connection->query($queryString);
+	if (!validate($queryResult)) return;
+
+	// Extract the table headers and data
+	$tableData = $queryResult->fetch_all(MYSQLI_ASSOC);
+	$tableHeaders = array();
+	if(!empty($tableData)){
+	    $tableHeaders = array_keys($tableData[0]);
+	}
+	// close the connection to the server
+	$connection->close();
+	return array($tableHeaders, $tableData);
 }
 
 // Queries the database for all rows and columns of the given table name
@@ -27,26 +43,20 @@ function genTableFromQuery($queryID, $tableHeader) {
 	// Connect to the server
 	$connection = openConnection();
 
-	// Query the DB with the queryID, retrieve the query and table header associated with ID
-	$queryGetterQuery = 
-		"SELECT queryBody, tableHeader 
-		FROM queryobject 
-		WHERE queryID = '$queryID'";
-	$queryResult = $connection->query($queryGetterQuery);
-	if (!validate($queryResult)) return;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// GET THE QUERY AND THE STYLES
+	$queryObject = getQueryObject($queryID);
+	$mainQueryBody = $queryObject->getQuery();
 
-	// Fetch the query we're querying for
-	$queryGetterData = $queryResult->fetch_all(MYSQLI_ASSOC);
-	$mainQueryBody = $queryGetterData[0]["queryBody"];
-
-	// Get the table header if one wasn't provided
 	if (!$tableHeader) {
-		$tableHeader = $queryGetterData[0]["tableHeader"];
-	} 
+		$tableHeader = $queryObject->getFormattedHeader();
+	}
 	// A header wasn't provided, so the initial query was dynamic. Insert the given header into the retrieved template query
 	else {
 		$mainQueryBody = str_replace("conditionString",$tableHeader,$mainQueryBody);
 	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Query the DB for the column meta data (column styling and related query for retrieving new tables)
 	$columnMetaDataQuery = 
 		"SELECT style, relatedQuery
@@ -64,6 +74,7 @@ function genTableFromQuery($queryID, $tableHeader) {
 		array_push($relatedQueries, $columnMetaData[$i]["relatedQuery"]);
 	}
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Query the DB with the retrieved query
 	$dataQueryResult = $connection->query($mainQueryBody);
 	if (!validate($queryResult)) return;
@@ -146,10 +157,10 @@ function styleData($dataElement, $columnFormats, $relatedQuery) {
 	if ($columnFormats == 'link') {
 		return "
 		<td>
-		<form method='post' action='index.php'>
-			<input type='hidden' name='queryID' value='$relatedQuery'>
-			<input class='tableLink' type='submit' name='header' value='$dataElement'>
-		</form>
+			<form method='post' action='index.php'>
+				<input type='hidden' name='queryID' value='$relatedQuery'>
+				<input class='tableLink' type='submit' name='header' value='$dataElement'>
+			</form>
 		</td>
 		";
 	}

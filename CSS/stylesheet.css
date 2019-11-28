@@ -1,5 +1,10 @@
+html {
+    min-height: 100%;
+}
 body {
 	background-color: gray;
+	/*height: 100vh;
+	/*min-height: 100vh;*/
 }
 .headerBar {
 	position: relative;
@@ -101,4 +106,8 @@ input.tableLink {
 	color: #069;
 	text-decoration: underline;
 	cursor: pointer;
+}
+.form {
+    float: right;
+	width: 40%;
 }
